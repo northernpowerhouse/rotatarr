@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  rotatarr:
+    image: ghcr.io/northernpowerhouse/rotatarr:latest
+    restart: unless-stopped
+    environment:
+      PROWLARR_URL: "http://your-prowlarr-host:9696"  # change to your Prowlarr URL
+      PROWLARR_API_KEY: "your-prowlarr-api-key"  # change to your API key
+      CHECK_INTERVAL_MIN: "30"  # check every 30 minutes
+      TAG_TO_TRY: ""  # tag name to try; leave empty to skip
+      TAG_FORCE: "false"  # if true, try tag-based fallback immediately
+      DRY_RUN: "true"
+      ONE_SHOT: "false"
+      LOG_LEVEL: "INFO"
+      TEST_RETRIES: "2"
+      TEST_RETRY_DELAY_SEC: "2"
+      INDEXER_MAX_ATTEMPTS: "3"
+      INDEXER_COOLDOWN_MIN: "60"
+      INDEXER_STATE_FILE: "/app/data/indexer_state.json"
+      APPLY_TAG_SAVE_BEFORE_TEST: "false"
+      TEST_AS_UI: "false"
+      FORCE_TEST_INDEXERS: ""
+      INSPECT_INDEXERS: "false"
+      DUMP_INDEXERS: ""
+    # Persist state and logs
+    volumes:
+      - ./data:/app/data
