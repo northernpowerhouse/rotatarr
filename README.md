@@ -1,18 +1,18 @@
 # Rotatarr — Prowlarr Indexer Repair Tool
 
-Rotatarr is a Dockerized Python script to check Prowlarr indexers on a configurable schedule, attempt to fix failing indexers by testing alternative base URLs, and test applying a Flaresolverr tag if desired.
+Rotatarr is a Dockerized Python script to check Prowlarr indexers on a configurable schedule, attempt to fix failing indexers by testing alternative base URLs, and test applying a FlareSolverr tag if desired.
 
 Features
 - Periodic checks for failing indexers
 - Tests alternate base URLs found in indexer definitions
-- Optionally adds a configured Prowlarr tag (like `flaresolvarr`) to the indexer and re-tests
+- Optionally adds a configured Prowlarr tag (like `FlareSolverr`) to the indexer and re-tests
 - Saves working combinations and rolls back when all attempts fail
 
 Configuration
 - PROWLARR_URL — base URL for Prowlarr (e.g., `http://localhost:9696`)
 - PROWLARR_API_KEY — your Prowlarr API key
 - CHECK_INTERVAL_MIN — loop interval in minutes (default 30)
-- TAG_TO_TRY — optional tag name to try (e.g., `flaresolvarr`) — set empty to skip
+- TAG_TO_TRY — optional tag name to try (e.g., `FlareSolverr`) — set empty to skip
  - APPLY_TAG_SAVE_BEFORE_TEST — when `true`, the tool will persist the tag/baseUrl change to Prowlarr before running the API test to better replicate the UI behavior (defaults to `false`).
  - TEST_AS_UI — when `true`, the script will attempt a minimal 'UI-like' payload if the full indexer payload fails the test; this can replicate UI-specific behavior and is useful for indexers blocked by Cloudflare (defaults to `false`).
  - FORCE_TEST_INDEXERS — a comma-separated list of indexer names or ids that should be forced to test even if they're in cooldown; useful to retest specific indexers (defaults to empty).
